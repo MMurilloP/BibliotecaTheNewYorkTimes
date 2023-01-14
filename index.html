@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIBLIOTECA</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div id="divHeader">
+            <h2 id="title1">New York Times </h2>
+            <h1 id="title2">Best Sellers</h1>
+        </div>
+        <div>
+            <h4 id="Usuario">
+
+            </h4>
+        </div>      
+    </header>
+
+    <div id="btn-container">
+        <button id="btnRegisterLogin" class="btn">REGISTER/LOGIN</button>
+        <button class=" btn logout " id="salir">Logout</button>
+    </div>  
+
+    <button id="btnIndice" class="btn hidden">Volver a categorias</button>
+
+
+
+    <main class="main">
+
+        <div class="form-wrapper">
+            <div class="form-container">
+                <h3>Registrate</h3>
+                <form id="form1" action="#" method="POST">
+                    <label for="email">Email:</label><br />
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Introduce email..."
+                    /><br />
+                    <label for="pass">Password:</label><br />
+                    <input
+                    type="password"
+                    id="pass"
+                    name="pass"
+                    placeholder="Introduce password..."
+                    /><br />
+                    <label for="pass2">Repite password:</label><br />
+                    <input
+                    type="password"
+                    id="pass2"
+                    name="pass2"
+                    placeholder="Repite password..."
+                    /><br /><br />
+                    <input id="registerBtn" class=" btnForm" type="submit" value="Enviar" />
+        
+                </form>
+            </div>
+            <div class="form-container">
+                <h3>Login</h3>
+                <form id="form2" action="#" method="POST">
+                    <label for="email2">Email:</label><br />
+                    <input
+                    type="email"
+                    id="email2"
+                    name="email2"
+                    placeholder="Introduce email..."
+                    /><br />
+                    <label for="pass3">Password:</label><br />
+                    <input
+                    type="password"
+                    id="pass3"
+                    name="pass3"
+                    placeholder="Introduce password..."
+                    /><br />
+                    <input class="boton btnForm btnLogin" type="submit" value="Enviar" />
+                </form>
+                
+            </div>
+        </div>
+
+        <section id="categoriasLibros"> 
+            <article id="cards-container"> </article>
+            <article id="button-container"> </article>
+        </section>
+
+        <section id="LibrosDentroCategorias">
+            <article id="books-container"></article>
+
+        </section>
+        <section id="loader2">
+            <div class="loader"></div>
+        </section>
+    </main>
+
+    <footer>
+        <button id="btnArriba" class="btn btnAtras">Volver arriba</button>
+    </footer>
+    
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html>
