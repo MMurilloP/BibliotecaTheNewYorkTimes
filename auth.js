@@ -1,42 +1,4 @@
-const createUser = (user) => {
-    db.collection("users")
-      .add(user)
-      .then((docRef) => console.log("Document written with ID: ", docRef.id))
-      .catch((error) => console.error("Error adding document: ", error));
-  };
-  
-  const readAllUsers = (born) => {
-    db.collection("users")
-      .where("first", "==", born)
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          console.log(doc.data());
-        });
-      });
-  };
-  //readAllUsers(1224)
-  // Read ONE
-  function readOne(id) {
-    db.collection("users")
-      .doc(id)
-      .get()
-      .then((doc) => {
-        if (doc.exists) {
-          console.log("Document data:", doc.data());
-        } else {
-          // doc.data() will be undefined in this case
-          console.log("No such document!");
-        }
-      })
-      .catch((error) => {
-        console.log("Error getting document:", error);
-      });
-  }
-  //readOne("690WYQfTZUoEFnq5q1Ov");
-  /**************Firebase Auth*****************/
   const signUpUser = (email, password) => {
-    
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
@@ -56,7 +18,7 @@ const createUser = (user) => {
       .catch((error) => {
         let errorCode = error.code;
         let errorMessage = error.message;
-        console.log("Error en el sistema" + error.message);
+        // console.log("Error en el sistema" + error.message);
       });
   };
   //"alex@demo.com","123456"
@@ -74,7 +36,7 @@ const createUser = (user) => {
         let user = userCredential.user;
         console.log(`se ha logado ${user.email} ID:${user.uid}`)
         alert(`se ha logado ${user.email} ID:${user.uid}`)
-        console.log("USER", user);
+        // console.log("USER", user);
       })
       .catch((error) => {
         let errorCode = error.code;
