@@ -7,35 +7,48 @@ const firebaseConfig = {
   appId: "1:646669203474:web:7a5c08b26d494edb1d40cb"
 };
 
-firebase.initializeApp(firebaseConfig);// Inicializar app Firebase
-const db = firebase.firestore();// db representa mi BBDD //inicia Firestore
+firebase.initializeApp(firebaseConfig);
 
+const db = firebase.firestore();
+
+// funcion guardar libros favoritos
+function saveFavoriteBooks(user, books) {
+  db.collection("favorites")
+  .doc(user.uid)
+  .set({
+      userID: user.uid,
+      email: user.email,
+      books: books
+  })
+  .then(function(docRef) {
+      console.log("Libros favoritos guardados");
+  })
+  .catch (function(error) {
+      console.error("Error guardando libros favoritos", error);
+  });
+}
+
+// funcion subir libros favoritos a firebase, cuando se pulsa el boton login.
 
 const login1= document.querySelector(".btnLogin");
 login1.addEventListener("click", function(){
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       // El usuario está autenticado
-      let favoriteBooks = [{title: 'Libro 1', author: 'Autor 1'}, {title: 'Libro 2', author: 'Autor 2'}];
-      db.collection("favorites").add({
-          userID: user.uid,
-          books: favoriteBooks,
-          email: user.email
-      })
-          .then(function(docRef) {
-              console.log("Libros favoritos guardados con ID: " , docRef.id);
-      })
-          .catch (function(error) {
-              console.error("Error guardando libros favoritos", error);
-          });
+      let favoriteBooks = 
+          [{title: 'Libro 20', author: 'Autor 20'}, 
+           {title: 'Libro 2', author: 'Autor 2'},
+          ];
+      saveFavoriteBooks(user,favoriteBooks)
     } else {
       // El usuario no está autenticado
+      console.error("Error: Usuario no esta atentificado")
     }
   });
 })
 
 
-// seleccionar boton register/login
+// seleccionar boton register/login aparece y desaparece
 const btnRegisterLogin = document.querySelector("#btnRegisterLogin");
 let esVisible = false;
 // hacer que aparezca y desaparezca el formulario al piulsar el boton.
@@ -49,11 +62,9 @@ btnRegisterLogin.addEventListener("click", function(){
   }
 });
 
-
+//selectores HTML
 const articleELCategorias = document.querySelector("#cards-container");
-
 const articleELLibros = document.querySelector("#books-container");
-
 const header = document.querySelector("header");
 const buttonContainer = document.querySelector("#button-container");
 
@@ -78,7 +89,7 @@ function scrollToTop() {
 // api key de la libreria new york times
 const apiKey = "fKCM4Ap0uTAGSmRBKnWjpB49UTwkcG8P";
 
-// funcion que imprime categorias, pagina principal.
+// funcion que imprime categorias, pagina principal. metido un setTimeout para simular carga de archivo, pero no es necesario.
 function categoriasLibros() {
   document.querySelector(".loader").style.display = "block";
   setTimeout(function() {
@@ -106,37 +117,39 @@ function categoriasLibros() {
 
         document.querySelector("#cards-container").appendChild(div);
         document.querySelector(".loader").style.display = "none";
-
         let btns = document.querySelector(`.btnEL${[i]}`);
-        btns.addEventListener("click", function libros() {
-          document.querySelector(".loader").style.display = "none";
-          document.querySelector("#btnIndice").style.display ="block"
-          fetch(
-            `https://api.nytimes.com/svc/books/v3/lists/current/${data.results[i].list_name_encoded}.json?api-key=${apiKey}`
-          )
-            .then((response) => response.json())
-            .then((data) => {
-              for (let i = 0; i < data.results.books.length; i++) {
-                const div = document.createElement("div");
-                div.setAttribute("id", "cartasLibros");
-                div.innerHTML += `<h6>${data.results.list_name}</h6><h6> #${data.results.books[i].rank}. Title:   ${data.results.books[i].title} </h6>                  
-                                  <img id="img" src="${data.results.books[i].book_image}">
-                                  <p>Week on list: ${data.results.books[i].weeks_on_list}</p>
-                                  <p>${data.results.books[i].description}</p>
-                                  <button class="fav-btn" data-book-id="${data.results.books[i].id}">&#9733;</button>
-
-                                  <button id="btnAmazon"><a target= "_black" href="${data.results.books[i].amazon_product_url}">BUY AT AMAZON > </a></button>`;
-                document.querySelector("#books-container").appendChild(div);
-                document.querySelector("#cards-container").style.display ="none";
-                document.querySelector(".form-wrapper").style.display ="none";
-                
-
-              }
-            });
-        });
+        btns.addEventListener("click", function(){ libros(data,i); });
       }
     });
 },1500);
 }
 categoriasLibros();
+
+
+
+// funcion que imprime libros dentro de cada categoria al darle al boton READ MORE
+function libros(data, i) {
+  document.querySelector(".loader").style.display = "none";
+  document.querySelector("#btnIndice").style.display ="block"
+  fetch(
+    `https://api.nytimes.com/svc/books/v3/lists/current/${data.results[i].list_name_encoded}.json?api-key=${apiKey}`
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      for (let i = 0; i < data.results.books.length; i++) {
+        const div = document.createElement("div");
+        div.setAttribute("id", "cartasLibros");
+        div.innerHTML += `<h6>${data.results.list_name}</h6><h6> #${data.results.books[i].rank}. Title:   ${data.results.books[i].title} </h6>                  
+                              <img id="img" src="${data.results.books[i].book_image}">
+                              <p>Week on list: ${data.results.books[i].weeks_on_list}</p>
+                              <p>${data.results.books[i].description}</p>
+                              <button class="fav-btn ${[i]}" data-book-id="${data.results.books[i].id}">&#9733;</button>
+                              <button id="btnAmazon"><a target= "_black" href="${data.results.books[i].amazon_product_url}">BUY AT AMAZON > </a></button>`;
+        document.querySelector("#books-container").appendChild(div);
+        document.querySelector("#cards-container").style.display ="none";
+        document.querySelector(".form-wrapper").style.display ="none";
+      }
+    });
+}
+
 
