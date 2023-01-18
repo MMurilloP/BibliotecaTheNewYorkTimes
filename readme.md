@@ -11,8 +11,6 @@ Muy buenas, este proyecto ha sido creado con la finalidad de prácticar fetch AP
 -  Una vez dentro de la categoria de libros puedes añadir libros a tu categoria favoritos.
 
 
-![view](https://github.com/MMurilloP/TALLER_Git_GitHub/blob/develop/assets/view.png)
-
 ## Gracias por llegar hasta acá🎁
 
 * Dejános tus comentarios📢
