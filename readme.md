@@ -10,6 +10,8 @@ Muy buenas, este proyecto ha sido creado con la finalidad de prácticar fetch AP
 -  Selecciona la categoria que te interese ver.
 -  Una vez dentro de la categoria de libros puedes añadir libros a tu categoria favoritos.
 
+![npminstall!](./assets/Captura%20de%20pantalla%202023-01-18%20a%20las%2012.14.48.png)
+![npminstall!](./assets/Captura%20de%20pantalla%202023-01-18%20a%20las%2012.15.02.png)
 
 ## Gracias por llegar hasta acá🎁
 
