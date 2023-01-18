@@ -1,9 +1,40 @@
+main {
+  border: 5px solid black;
+  margin: 20px;
+  min-height: 200px;
+}
 header {
   border-bottom: 5px solid black;
   height: 100%;
   width: 90%;
   margin: 20px;
   padding: 20px;
+}
+
+section {
+  text-align: center;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+}
+
+img {
+  border: 2px solid black;
+  width: 75%;
+  height: 50%;
+}
+
+h3 {
+  font-weight: bolt;
+  border-bottom: 5px solid bisque;
+  font-size: 20px;
+}
+
+h6 {
+  padding: 2px;
+  margin: 5px;
 }
 
 #divHeader {
@@ -34,21 +65,9 @@ header {
 /*boton de volver a categorias*/
 #btnIndice {
   display: none;
-  margin-left: 80%;
-}
-
-/*separacion,se puede quitar*/
-main {
-  border: 5px solid black;
-  margin: 20px;
-  min-height: 200px;
 }
 
 /* contenedor de las categorias de libros*/
-
-section {
-  text-align: center;
-}
 #cards-container {
   display: flex;
   flex-direction: row;
@@ -65,11 +84,6 @@ section {
   padding: 15px;
 }
 
-h3 {
-  font-weight: bolt;
-  border-bottom: 5px solid bisque;
-  font-size: 20px;
-}
 /* botones*/
 
 #button-container {
@@ -121,11 +135,6 @@ h3 {
   box-shadow: 0 0 10px 0 black inset, 0 0 10px 4px grey;
 }
 
-footer {
-  display: flex;
-  justify-content: center;
-}
-
 /*contenedor de los libros dentro de las categorias, una vez clicado el boton*/
 #books-container {
   display: flex;
@@ -134,10 +143,6 @@ footer {
   flex-wrap: wrap;
 }
 
-h6 {
-  padding: 2px;
-  margin: 5px;
-}
 
 #cartasLibros {
   display: flex;
@@ -150,11 +155,6 @@ h6 {
   margin: 15px;
   align-items: center;
 }
-img {
-  border: 2px solid black;
-  width: 75%;
-  height: 50%;
-}
 
 .fav-btn {
   margin: 10px;
@@ -165,19 +165,6 @@ img {
   color: white;
   font-size: 15px;
   height: 30px;
-}
-
-/*MEDIA QUERYS*/
-/*movil*/
-@media only screen and (max-width: 600px) {
-}
-
-/*tablet*/
-@media only screen and (min-width: 600px) and (max-width: 900px) {
-}
-
-/*pc*/
-@media only screen and (min-width: 900px) {
 }
 
 /*spinner de carga de pagina simulado*/
@@ -314,4 +301,19 @@ img {
 }
 .btnForm:hover {
   box-shadow: 0 0 10px 0 black inset, 0 0 10px 4px grey;
+}
+
+
+
+/*MEDIA QUERYS*/
+/*movil*/
+@media only screen and (max-width: 600px) {
+}
+
+/*tablet*/
+@media only screen and (min-width: 600px) and (max-width: 900px) {
+}
+
+/*pc*/
+@media only screen and (min-width: 900px) {
 }

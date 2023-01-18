@@ -21,7 +21,8 @@
         // console.log("Error en el sistema" + error.message);
       });
   };
-  //"alex@demo.com","123456"
+
+  //PASS1 = PASS2
   document.getElementById("form1").addEventListener("submit", function (event) {
     event.preventDefault();
     let email = event.target.elements.email.value;
@@ -29,6 +30,8 @@
     let pass2 = event.target.elements.pass2.value;
     pass === pass2 ? signUpUser(email, pass) : alert("error password");
   })
+
+  //SIGNIN - SIGOUT
   const signInUser = (email, password) => {
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
@@ -53,6 +56,7 @@
       console.log("hubo un error: " + error);
     });
   }
+
   document.getElementById("form2").addEventListener("submit", function (event) {
     event.preventDefault();
     let email = event.target.elements.email2.value;
@@ -60,6 +64,7 @@
     signInUser(email, pass)
   })
   document.getElementById("salir").addEventListener("click", signOut);
+
   // Listener de usuario en el sistema
   // Controlar usuario logado
   firebase.auth().onAuthStateChanged(function (user) {
